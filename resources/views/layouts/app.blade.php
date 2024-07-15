@@ -7,6 +7,7 @@
 <body>
     <div class="sidebar">
         <nav>
+            <a href="{{ url('/usuarios') }}" class="nav-link">Usuario</a>
             <a href="{{ url('/categoria') }}" class="nav-link">Categoría</a>
             <a href="{{ url('/producto') }}" class="nav-link">Producto</a>
             <a href="{{ url('/inventario') }}" class="nav-link">Inventario</a>
