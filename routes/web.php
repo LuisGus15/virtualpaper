@@ -58,6 +58,9 @@ Route::get('/producto/{id}/editar', [ProductoController::class, 'edit'])->name('
 Route::put('/producto/{id}', [ProductoController::class, 'update'])->name('producto.update');
 Route::delete('/producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
+//
+Route::get('/productos', [ProductoController::class, 'showCustomerProducts'])->name('products.customer');
+Route::get('/customer', [ProductoController::class, 'customer'])->name('productos.customer');
 // Ruta para inventario
 Route::get('inventario', [InventarioController::class, 'index'])->name('inventario.index');
 
@@ -93,3 +96,9 @@ Route::get('/ventas/{venta}/edit', [VentaController::class, 'edit'])->name('vent
 Route::patch('/ventas/{venta}', [VentaController::class, 'update'])->name('ventas.update');
 Route::delete('/ventas/{venta}', [VentaController::class, 'destroy'])->name('ventas.destroy');
 Route::get('/ventas/{venta}', [VentaController::class, 'show'])->name('ventas.show');
+
+
+// Rutas para clientes
+Route::get('/cliente/ventas', [VentaController::class, 'indexCliente'])->name('cliente.ventas.index');
+Route::get('/cliente/ventas/create', [VentaController::class, 'createCliente'])->name('cliente.ventas.create');
+Route::post('/cliente/ventas', [VentaController::class, 'storeCliente'])->name('cliente.ventas.store');

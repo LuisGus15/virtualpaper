@@ -7,9 +7,12 @@ use App\Models\DetalleVenta;
 use App\Models\Producto;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VentaController extends Controller
 {
+    // Métodos para administrador
+
     public function index()
     {
         $ventas = Venta::with('usuario')->get();
@@ -33,19 +36,19 @@ class VentaController extends Controller
             'productos.*.producto_id' => 'required|exists:producto,id',
             'productos.*.cantidad' => 'required|numeric|min:1',
         ]);
-    
+
         $total = 0;
         foreach ($request->productos as $producto) {
             $total += $producto['cantidad'] * Producto::find($producto['producto_id'])->precio;
         }
-    
+
         $venta = Venta::create([
             'estado' => $request->estado,
             'fecha_venta' => $request->fecha_venta,
             'usuario_id' => $request->usuario_id,
             'total' => $total,
         ]);
-    
+
         foreach ($request->productos as $producto) {
             DetalleVenta::create([
                 'venta_id' => $venta->id,
@@ -54,10 +57,9 @@ class VentaController extends Controller
                 'precio_unitario' => Producto::find($producto['producto_id'])->precio,
             ]);
         }
-    
+
         return redirect()->route('ventas.index')->with('success', 'Venta creada con éxito.');
     }
-    
 
     public function show(Venta $venta)
     {
@@ -112,4 +114,52 @@ class VentaController extends Controller
         $venta->delete();
         return redirect()->route('ventas.index')->with('success', 'Venta eliminada con éxito.');
     }
+
+    // Métodos para cliente
+
+    public function indexCliente()
+{
+    $ventas = Venta::where('usuario_id', Auth::id())->with('detalles.producto')->get();
+    return view('cliente.ventas.index', compact('ventas'));
+}
+
+public function createCliente()
+{
+    $productos = Producto::all();
+    return view('cliente.ventas.create', compact('productos'));
+}
+
+public function storeCliente(Request $request)
+{
+    $request->validate([
+        'productos' => 'required|array',
+        'productos.*.producto_id' => 'required|exists:producto,id',
+        'productos.*.cantidad' => 'required|numeric|min:1',
+    ]);
+
+    $total = 0;
+    foreach ($request->productos as $producto) {
+        $total += $producto['cantidad'] * Producto::find($producto['producto_id'])->precio;
+    }
+
+    $venta = Venta::create([
+        'estado' => 'Pendiente',
+        'fecha_venta' => now(),
+        'usuario_id' => Auth::id(),
+        'total' => $total,
+    ]);
+
+    foreach ($request->productos as $producto) {
+        DetalleVenta::create([
+            'venta_id' => $venta->id,
+            'producto_id' => $producto['producto_id'],
+            'cantidad' => $producto['cantidad'],
+            'precio_unitario' => Producto::find($producto['producto_id'])->precio,
+        ]);
+    }
+
+    return redirect()->route('cliente.ventas.index')->with('success', 'Compra realizada con éxito.');
+}
+
+
 }

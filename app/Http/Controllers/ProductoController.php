@@ -15,7 +15,11 @@ class ProductoController extends Controller
         $productos = Producto::all();
         return view('producto.index', compact('productos'));
     }
-
+    public function customer()
+    {
+        $productos = Producto::all();
+        return view('productos.customer', compact('productos'));
+    }
     public function create()
     {
         $categorias = Categoria::all();
@@ -89,5 +93,11 @@ class ProductoController extends Controller
         Inventario::where('producto_id', $id)->delete();
 
         return redirect()->route('producto.index')->with('success', 'Producto eliminado exitosamente.');
+    }
+
+    public function showCustomerProducts()
+    {
+        $productos = Producto::all();
+        return view('products.customer', compact('productos'));
     }
 }
