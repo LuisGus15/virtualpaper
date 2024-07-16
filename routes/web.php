@@ -40,6 +40,23 @@ Route::get('/home', function () {
 })->name('home')->middleware('auth');
 
 
+use Illuminate\Support\Facades\Auth;
+
+// Rutas de autenticación
+Auth::routes();
+
+// Ruta de inicio
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Otras rutas
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Ruta de logout
+Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+
 
 
 Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
