@@ -1,0 +1,66 @@
+body {
+    background-color: #1E90FF;
+    color: #FFFFFF;
+    font-family: 'Segoe UI';
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.navbar, .sidebar {
+    background-color: #87CEEB;
+    font-family: 'Segoe UI';
+}
+
+.navbar a, .sidebar a, .content {
+    color: #0d0d0d;
+    font-family: 'Segoe UI';
+    text-decoration: none;
+}
+
+.navbar a:hover, .sidebar a:hover {
+    color: #333333;
+}
+
+.content {
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Segoe UI';
+    color: #0c0c0c;
+}
+
+p {
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
+button, .btn {
+    background-color: #4682B4;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Segoe UI';
+}
+
+button:hover, .btn:hover {
+    background-color: #4169E1;
+}
+
+input, select, textarea {
+    background-color: #B0C4DE;
+    color: #0d0d0d;
+    border: 1px solid #87CEEB;
+    padding: 10px;
+    font-family: 'Segoe UI';
+}
+
+input::placeholder, textarea::placeholder {
+    color: #4682B4;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #4169E1;
+    outline: none;
+}

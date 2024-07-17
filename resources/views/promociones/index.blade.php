@@ -38,4 +38,7 @@
         </tbody>
     </table>
 </div>
+<div class="footer">
+    <p>Esta vista ha sido visitada {{ $pageViews->where('route_name', \Request::route()->getName())->first()->views ?? 0 }} veces.</p>
+</div>
 @endsection

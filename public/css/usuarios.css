@@ -1,15 +1,32 @@
+/* resources/css/usuarios.css */
+
 /* Estilos generales */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #cfcaca;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+/* Ajustar la altura del contenedor principal para que no se superponga con el navbar */
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
     height: 100vh;
 }
 
+/* Ajustar el contenedor del contenido principal */
+.content {
+    margin-left: 250px; /* Ajustar para que no se superponga con el sidebar */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 50px; /* Ajustar para que no se superponga con el navbar */
+}
+
+/* Estilos específicos para la página de lista de usuarios */
 .container {
     background-color: #fff;
     padding: 20px;
@@ -18,135 +35,11 @@ body {
     max-width: 800px;
     width: 100%;
     text-align: center;
+    margin-left: 5%; /* Ajustar el margen para que se centre correctamente */
 }
 
-/* Estilos específicos para la página de detalles del usuario */
-.detalle-usuario-container {
-    padding: 30px 50px;
-    max-width: 700px;
-}
-
-.detalle-usuario-container h1 {
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-.detalle-usuario-container .user-detail {
-    text-align: left;
-    border-top: 2px solid #007BFF;
-    padding-top: 20px;
-}
-
-.detalle-usuario-container .user-detail p {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    line-height: 1.5;
-}
-
-.detalle-usuario-container .user-detail p strong {
-    color: #007BFF;
-}
-
-.detalle-usuario-container .user-detail p:nth-child(even) {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.detalle-usuario-container .user-detail p {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.detalle-usuario-container .user-detail p strong {
-    flex: 0 0 150px;
-    text-align: right;
-    margin-right: 10px;
-}
-
-/* Estilos específicos para la página de creación de usuarios */
-.crear-usuario-container h1,
-.editar-usuario-container h1 {
-    margin-bottom: 20px;
-    font-size: 2rem;
+h1, h2 {
     color: #333;
-}
-
-.crear-usuario-container .user-form,
-.editar-usuario-container .user-form {
-    text-align: left;
-}
-
-.crear-usuario-container .form-row,
-.editar-usuario-container .form-row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.crear-usuario-container .form-group,
-.editar-usuario-container .form-group {
-    flex: 1 1 calc(50% - 10px);
-    margin-bottom: 15px;
-}
-
-.crear-usuario-container .form-group label,
-.editar-usuario-container .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.crear-usuario-container .form-group input,
-.editar-usuario-container .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.crear-usuario-container .btn,
-.editar-usuario-container .btn {
-    display: inline-block;
-    width: 100%;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.crear-usuario-container .btn:hover,
-.editar-usuario-container .btn:hover {
-    background-color: #0056b3;
-}
-
-/* Estilos para la lista de usuarios */
-a {
-    text-decoration: none;
-    color: #007BFF; /* Celeste */
-}
-
-.btn-create {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-create:hover {
-    background-color: #0056b3;
 }
 
 .alert-success {
@@ -214,4 +107,27 @@ a {
 
 .btn-delete:hover {
     background-color: #c82333;
+}
+
+.btn-create {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-create:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+    margin-top: 20px;
+    color: #0f0f0f;
+    font-size: 14px;
+    margin-left: auto;
 }

@@ -1,0 +1,68 @@
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: 'Homer Simpson UI'; /* Fuente más formal */
+    font-size: 16px; /* Tamaño de fuente estándar */
+    line-height: 1.6; /* Espaciado de línea para mejor legibilidad */
+}
+
+.navbar, .sidebar {
+    background-color: #555555;
+    font-family: 'Homer Simpson UI'; /* Asegura que la barra de navegación y la barra lateral tengan la misma fuente */
+}
+
+.navbar a, .sidebar a, .content {
+    color: #070707; /* Asegura que el texto en enlaces y contenido sea visible */
+    font-family: 'Homer Simpson UI'; /* Asegura consistencia en la fuente */
+    text-decoration: none; /* Remueve subrayados de enlaces */
+}
+
+.navbar a:hover, .sidebar a:hover {
+    color: #AAAAAA; /* Color para enlaces cuando se pasa el ratón por encima */
+}
+
+.content {
+    padding: 20px; /* Añade espacio alrededor del contenido */
+}
+
+/* Estilos adicionales para mejorar la apariencia */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Homer Simpson UI'; /* Fuente consistente para encabezados */
+    color: #131212;
+}
+
+p {
+    color: #FFFFFF;
+    margin-bottom: 15px; /* Añade espacio inferior a párrafos */
+}
+
+button, .btn {
+    background-color: #444444;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+}
+
+button:hover, .btn:hover {
+    background-color: #333333;
+}
+
+/* Estilos específicos para formularios */
+input, select, textarea {
+    background-color: #333333;
+    color: #FFFFFF;
+    border: 1px solid #555555;
+    padding: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #AAAAAA;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #777777;
+    outline: none;
+}

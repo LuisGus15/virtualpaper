@@ -37,4 +37,7 @@
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
 </div>
+<div class="footer">
+    <p>Esta vista ha sido visitada {{ $pageViews->where('route_name', \Request::route()->getName())->first()->views ?? 0 }} veces.</p>
+</div>
 @endsection
