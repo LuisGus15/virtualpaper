@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -11,7 +11,8 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\VentaController;
-use App\Http\Controllers\ThemeController;
+use Illuminate\Support\Facades\DB;
+
 
 // Rutas para la conexión a la base de datos
 Route::get('/test-db', function () {
@@ -84,4 +85,13 @@ Route::middleware(['auth', \App\Http\Middleware\CountPageViews::class, \App\Http
     Route::patch('/ventas/{venta}', [VentaController::class, 'update'])->name('ventas.update');
     Route::delete('/ventas/{venta}', [VentaController::class, 'destroy'])->name('ventas.destroy');
     Route::get('/ventas/{venta}', [VentaController::class, 'show'])->name('ventas.show');
+
+
+    // Rutas para clientes
+    Route::get('/cliente/ventas', [VentaController::class, 'indexCliente'])->name('cliente.ventas.index');
+    Route::get('/cliente/ventas/create', [VentaController::class, 'createCliente'])->name('cliente.ventas.create');
+    Route::post('/cliente/ventas', [VentaController::class, 'storeCliente'])->name('cliente.ventas.store');
+
+    Route::get('/catalogo', [ProductoController::class, 'showCustomerProducts'])->name('products.customer');
+    Route::get('/customer', [ProductoController::class, 'customer'])->name('productos.customer');
 });
