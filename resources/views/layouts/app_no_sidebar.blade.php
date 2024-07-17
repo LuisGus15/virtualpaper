@@ -14,7 +14,9 @@
                 <strong>{{ Auth::user()->nombre }}</strong>
                 <p>{{ Auth::user()->apellido }}</p>
             </div>
-            <a href="{{ route('cliente.ventas.index') }}">Ventas</a>
+            <a href="{{ route('cliente.ventas.index') }}">Compras</a>
+            
+            <a href="{{ route('cliente.cotizaciones.index') }}">Cotizaciones de  perfil</a>
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout
             </a>

@@ -88,10 +88,25 @@ Route::middleware(['auth', \App\Http\Middleware\CountPageViews::class, \App\Http
 
 
     // Rutas para clientes
-    Route::get('/cliente/ventas', [VentaController::class, 'indexCliente'])->name('cliente.ventas.index');
-    Route::get('/cliente/ventas/create', [VentaController::class, 'createCliente'])->name('cliente.ventas.create');
-    Route::post('/cliente/ventas', [VentaController::class, 'storeCliente'])->name('cliente.ventas.store');
-
+   // Rutas para ventas de clientes
+Route::get('/cliente/ventas', [VentaController::class, 'indexCliente'])->name('cliente.ventas.index');
+Route::get('/cliente/ventas/create', [VentaController::class, 'createCliente'])->name('cliente.ventas.create');
+Route::post('/cliente/ventas', [VentaController::class, 'storeCliente'])->name('cliente.ventas.store');
+Route::get('/cliente/ventas/{id}', [VentaController::class, 'showCliente'])->name('cliente.ventas.show');
+Route::get('/cliente/ventas/{id}/pagar', [VentaController::class, 'pagar'])->name('cliente.ventas.pagar'); // Esta es la ruta para el método pagar
+    
     Route::get('/catalogo', [ProductoController::class, 'showCustomerProducts'])->name('products.customer');
     Route::get('/customer', [ProductoController::class, 'customer'])->name('productos.customer');
+
+    // Rutas para cotizaciones de clientes
+    Route::get('/cliente/cotizaciones', [CotizacionController::class, 'indexCliente'])->name('cliente.cotizaciones.index');
+    Route::get('/cliente/cotizaciones/create', [CotizacionController::class, 'createCliente'])->name('cliente.cotizaciones.create');
+    Route::post('/cliente/cotizaciones', [CotizacionController::class, 'storeCliente'])->name('cliente.cotizaciones.store');
+    Route::get('/cliente/cotizaciones/{id}', [CotizacionController::class, 'showCliente'])->name('cliente.cotizaciones.show');
+
+    
+
+
+
+
 });

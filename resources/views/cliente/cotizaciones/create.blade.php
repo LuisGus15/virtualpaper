@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.app_no_sidebar')
 
 @section('content')
 <div class="container">
     <h1>Crear Cotización</h1>
-    <form action="{{ route('cotizaciones.store') }}" method="POST">
+    <form action="{{ route('cliente.cotizaciones.store') }}" method="POST">
         @csrf
         <div id="productos-container">
             <div class="form-group">
