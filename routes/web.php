@@ -1,14 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InventarioController;
-use Illuminate\Support\Facades\DB;
-// Ruta para probar la conexión a la base de datos
+use App\Http\Controllers\PromocionController;
+use App\Http\Controllers\CotizacionController;
+use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ThemeController;
+
+// Rutas para la conexión a la base de datos
 Route::get('/test-db', function () {
     try {
         DB::connection()->getPdo();
@@ -17,9 +22,6 @@ Route::get('/test-db', function () {
         return 'Could not connect to the database. Error: ' . $e->getMessage();
     }
 });
-
-// Rutas para el controlador de usuarios
-Route::resource('usuarios', UsuarioController::class);
 
 // Ruta para la página de bienvenida
 Route::get('/', function () {
@@ -39,41 +41,47 @@ Route::get('/home', function () {
     return view('home');
 })->name('home')->middleware('auth');
 
+Route::get('/change-theme/{themeName}', [ThemeController::class, 'changeTheme'])->name('changeTheme');
 
-use Illuminate\Support\Facades\Auth;
+// Agrupar todas las rutas que deseas monitorear con los middlewares
+Route::middleware(['auth', \App\Http\Middleware\CountPageViews::class, \App\Http\Middleware\SharePageViewCounts::class])->group(function () {
+    // Rutas de recursos
+    Route::resource('usuarios', UsuarioController::class);
+    Route::resource('categoria', CategoriaController::class);
+    Route::resource('producto', ProductoController::class)->except(['show', 'create']);
+    Route::get('/producto/agregar', [ProductoController::class, 'create'])->name('producto.create');
+    Route::resource('inventario', InventarioController::class);
+    Route::resource('promociones', PromocionController::class);
+    Route::resource('cotizaciones', CotizacionController::class);
+    Route::resource('ventas', VentaController::class);
 
-// Rutas de autenticación
-Auth::routes();
+    // Rutas adicionales
+    Route::get('productos', [ProductoController::class, 'index'])->name('productos.index');
+    Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
+    Route::post('/categoria', [CategoriaController::class, 'store'])->name('categoria.store');
+    Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
+    Route::get('inventario', [InventarioController::class, 'index'])->name('inventario.index');
 
-// Ruta de inicio
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/promociones', [PromocionController::class, 'index'])->name('promociones.index');
+    Route::get('/promociones/create', [PromocionController::class, 'create'])->name('promociones.create');
+    Route::post('/promociones', [PromocionController::class, 'store'])->name('promociones.store');
+    Route::get('/promociones/{promocion}/edit', [PromocionController::class, 'edit'])->name('promociones.edit');
+    Route::patch('/promociones/{promocion}', [PromocionController::class, 'update'])->name('promociones.update');
+    Route::delete('/promociones/{promocion}', [PromocionController::class, 'destroy'])->name('promociones.destroy');
+
+    Route::get('/cotizaciones', [CotizacionController::class, 'index'])->name('cotizaciones.index');
+    Route::get('/cotizaciones/create', [CotizacionController::class, 'create'])->name('cotizaciones.create');
+    Route::post('/cotizaciones', [CotizacionController::class, 'store'])->name('cotizaciones.store');
+    Route::get('/cotizaciones/{cotizacion}', [CotizacionController::class, 'show'])->name('cotizaciones.show');
+    Route::get('/cotizaciones/{cotizacion}/edit', [CotizacionController::class, 'edit'])->name('cotizaciones.edit');
+    Route::patch('/cotizaciones/{cotizacion}', [CotizacionController::class, 'update'])->name('cotizaciones.update');
+    Route::delete('/cotizaciones/{cotizacion}', [CotizacionController::class, 'destroy'])->name('cotizaciones.destroy');
+
+    Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
+    Route::get('/ventas/create', [VentaController::class, 'create'])->name('ventas.create');
+    Route::post('/ventas', [VentaController::class, 'store'])->name('ventas.store');
+    Route::get('/ventas/{venta}/edit', [VentaController::class, 'edit'])->name('ventas.edit');
+    Route::patch('/ventas/{venta}', [VentaController::class, 'update'])->name('ventas.update');
+    Route::delete('/ventas/{venta}', [VentaController::class, 'destroy'])->name('ventas.destroy');
+    Route::get('/ventas/{venta}', [VentaController::class, 'show'])->name('ventas.show');
 });
-
-// Otras rutas
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Ruta de logout
-Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-
-
-
-
-Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
-Route::post('/categoria', [CategoriaController::class, 'store'])->name('categoria.store');
-Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
-
-
-
-Route::resource('producto', ProductoController::class)->except(['show']);
-Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');
-Route::get('/producto/agregar', [ProductoController::class, 'create'])->name('producto.create');
-Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');
-Route::get('/producto/{id}/editar', [ProductoController::class, 'edit'])->name('producto.edit');
-Route::put('/producto/{id}', [ProductoController::class, 'update'])->name('producto.update');
-Route::delete('/producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
-
-
-
-Route::get('inventario', [InventarioController::class, 'index'])->name('inventario.index');
-

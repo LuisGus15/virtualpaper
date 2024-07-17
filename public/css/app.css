@@ -1,9 +1,66 @@
 body {
-    display: flex;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 10px; /* Ajuste para bajar un poco el navbar */
+}
+
+.navbar .navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-left a {
+    margin-right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar .navbar-left .nav-link {
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar .navbar-left .nav-link:hover {
+    text-decoration: underline;
+}
+
+.navbar .navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .navbar-right a {
+    margin-left: 20px;
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar .navbar-right a:hover {
+    text-decoration: underline;
+}
+
+.navbar .navbar-right i {
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #000; /* Color negro para los iconos */
 }
 
 .sidebar {
@@ -13,6 +70,7 @@ body {
     padding: 15px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     position: fixed;
+    top: 70px; /* Ajuste para bajar un poco la barra lateral */
 }
 
 .nav-link {
@@ -33,13 +91,14 @@ body {
     margin-left: 220px;
     padding: 20px;
     flex: 1;
+    margin-top: 20px; /* Ajuste para acercar contenido al navbar */
 }
-/* aqui lo blanco del medio */
+
 .container {
     max-width: 600px;
     margin: auto;
     background: #fff;
-    padding: 70px;
+    padding: 40px; /* Ajuste para reducir el padding */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
@@ -65,9 +124,7 @@ h1, h2 {
     border-radius: 4px;
 }
 
-
-/*aqui son los nombre de los botones */
-.btn { 
+.btn {
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -117,8 +174,6 @@ h1, h2 {
     background-color: #c82333;
 }
 
-
-/* Estilo para el botón */
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
@@ -130,7 +185,6 @@ h1, h2 {
     border-color: #0056b3;
 }
 
-/* Estilo para la tabla */
 .table {
     width: 100%;
     max-width: 100%;
@@ -168,5 +222,3 @@ h1, h2 {
 .table-bordered thead td {
     border-bottom-width: 2px;
 }
-
-

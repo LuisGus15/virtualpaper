@@ -1,0 +1,66 @@
+body {
+    background-color: #FFD700;
+    color: #000000;
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.navbar, .sidebar {
+    background-color: #FFA500;
+    font-family: monospace;
+}
+
+.navbar a, .sidebar a, .content {
+    color: #000000;
+    font-family: monospace;
+    text-decoration: none;
+}
+
+.navbar a:hover, .sidebar a:hover {
+    color: #333333;
+}
+
+.content {
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: monospace;
+    color: #000000;
+}
+
+p {
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+button, .btn {
+    background-color: #FF8C00;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: monospace;
+}
+
+button:hover, .btn:hover {
+    background-color: #FF7F00;
+}
+
+input, select, textarea {
+    background-color: #FFE4B5;
+    color: #000000;
+    border: 1px solid #FFA500;
+    padding: 10px;
+    font-family:monospace;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #8B4513;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #FF8C00;
+    outline: none;
+}
