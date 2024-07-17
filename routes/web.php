@@ -59,7 +59,7 @@ Route::put('/producto/{id}', [ProductoController::class, 'update'])->name('produ
 Route::delete('/producto/{id}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
 //
-Route::get('/productos', [ProductoController::class, 'showCustomerProducts'])->name('products.customer');
+Route::get('/catalogo', [ProductoController::class, 'showCustomerProducts'])->name('products.customer');
 Route::get('/customer', [ProductoController::class, 'customer'])->name('productos.customer');
 // Ruta para inventario
 Route::get('inventario', [InventarioController::class, 'index'])->name('inventario.index');
