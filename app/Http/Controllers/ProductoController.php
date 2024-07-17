@@ -15,11 +15,13 @@ class ProductoController extends Controller
         $productos = Producto::all();
         return view('producto.index', compact('productos'));
     }
+
     public function customer()
     {
         $productos = Producto::all();
         return view('productos.customer', compact('productos'));
     }
+
     public function create()
     {
         $categorias = Categoria::all();

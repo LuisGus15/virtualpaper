@@ -36,9 +36,11 @@ body {
     font-weight: 500;
 }
 
+
+
 .header .nav .register-btn {
     background-color: #ffcc00;
-    color: #333;
+    color: #24d42d;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: 700;

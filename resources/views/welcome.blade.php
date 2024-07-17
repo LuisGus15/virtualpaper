@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="logo">
-            <img src="{{ asset('images/virtuallogo.jpeg') }}" alt="Logo">
+            <img src="{{ asset('css/libreria.png') }}" alt="Logo">
             <span>Virtual Papers</span>
         </div>
         <nav class="nav">

@@ -24,7 +24,7 @@
         </div>
         <div class="navbar-right">
             <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i></a>
-            <a href="{{ route('logout') }}" 
+            <a href="#" 
                onclick="event.preventDefault(); 
                         document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>

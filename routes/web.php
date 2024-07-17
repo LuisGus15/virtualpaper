@@ -13,7 +13,6 @@ use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\DB;
 
-
 // Rutas para la conexión a la base de datos
 Route::get('/test-db', function () {
     try {
@@ -38,15 +37,17 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register']);
 
 // Ruta para la página después de iniciar sesión
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::middleware(['auth', \App\Http\Middleware\CountPageViews::class, \App\Http\Middleware\SharePageViewCounts::class])->group(function () {
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
+});
 
+// Rutas adicionales
 Route::get('/change-theme/{themeName}', [ThemeController::class, 'changeTheme'])->name('changeTheme');
 
 // Agrupar todas las rutas que deseas monitorear con los middlewares
 Route::middleware(['auth', \App\Http\Middleware\CountPageViews::class, \App\Http\Middleware\SharePageViewCounts::class])->group(function () {
-    // Rutas de recursos
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('categoria', CategoriaController::class);
     Route::resource('producto', ProductoController::class)->except(['show', 'create']);
@@ -56,7 +57,6 @@ Route::middleware(['auth', \App\Http\Middleware\CountPageViews::class, \App\Http
     Route::resource('cotizaciones', CotizacionController::class);
     Route::resource('ventas', VentaController::class);
 
-    // Rutas adicionales
     Route::get('productos', [ProductoController::class, 'index'])->name('productos.index');
     Route::get('/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
     Route::post('/categoria', [CategoriaController::class, 'store'])->name('categoria.store');
@@ -85,7 +85,6 @@ Route::middleware(['auth', \App\Http\Middleware\CountPageViews::class, \App\Http
     Route::patch('/ventas/{venta}', [VentaController::class, 'update'])->name('ventas.update');
     Route::delete('/ventas/{venta}', [VentaController::class, 'destroy'])->name('ventas.destroy');
     Route::get('/ventas/{venta}', [VentaController::class, 'show'])->name('ventas.show');
-
 
     // Rutas para clientes
     Route::get('/cliente/ventas', [VentaController::class, 'indexCliente'])->name('cliente.ventas.index');
