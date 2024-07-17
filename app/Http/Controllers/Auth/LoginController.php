@@ -32,7 +32,17 @@ class LoginController extends Controller
 
         if ($user && Hash::check($request->contrasena, $user->contrasena)) {
             Auth::loginUsingId($user->id);
-            return redirect()->intended('/home');
+
+            // Redireccionar basado en el rol
+            switch (strtolower($user->rol)) {
+                case 'administrador':
+                    return redirect()->intended('/home');
+                case 'usuario':
+                case 'cliente':
+                    return redirect()->intended('/catalogo');
+                default:
+                    return redirect()->intended('/');
+            }
         }
 
         throw ValidationException::withMessages([

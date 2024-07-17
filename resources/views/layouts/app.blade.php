@@ -20,7 +20,7 @@
     <div class="navbar">
         <div class="navbar-left">
             <a href="{{ url('/') }}">Virtual Papers</a>
-            <a href="{{ url('/') }}" class="nav-link">Inicio</a>
+           
         </div>
         <div class="navbar-right">
             <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i></a>
@@ -29,6 +29,12 @@
                         document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
+            <a href="#" 
+                   onclick="event.preventDefault(); 
+                            document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Cerrar sesión
+                </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>

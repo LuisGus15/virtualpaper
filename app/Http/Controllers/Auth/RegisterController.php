@@ -29,7 +29,7 @@ class RegisterController extends Controller
 
         Auth::loginUsingId($user->id);
 
-        return redirect('/home');
+        return $this->redirectBasedOnRole($user);
     }
 
     protected function validator(array $data)
@@ -60,5 +60,23 @@ class RegisterController extends Controller
         ]);
 
         return DB::table('usuario')->where('id', $id)->first();
+    }
+
+    protected function redirectBasedOnRole($user)
+    {
+        if ($user->rol === 'Administrador') {
+            return redirect()->intended('/home');
+        } else {
+            return redirect()->intended('/catalogo');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

@@ -1,22 +1,73 @@
-
+/* Estilos generales */
 body {
     display: flex;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Navbar */
+.navbar {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-left a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+.navbar-left a:hover {
+    text-decoration: underline;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.navbar-right a:hover {
+    text-decoration: underline;
+}
+
+.dropdown.theme-selector {
+    margin-left: 15px;
+}
+
+/* Sidebar */
 .sidebar {
     width: 200px;
-    height: 100vh;
+    height: 100%;
     background-color: #333;
     padding: 15px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     position: fixed;
+    top: 50px; /* Ajustar para que no se superponga con el navbar */
+    left: 0;
+    padding-top: 70px; /* Ajustar para que no se superponga con el navbar */
 }
 
-.nav-link {
+.sidebar a {
     display: block;
     padding: 10px;
     color: #fff;
@@ -26,17 +77,19 @@ body {
     transition: background-color 0.2s;
 }
 
-.nav-link:hover {
+.sidebar a:hover {
     background-color: #575757;
 }
 
+/* Contenido */
 .content {
     margin-left: 220px;
     padding: 20px;
     flex: 1;
-    width: 100%;
+    width: calc(100% - 220px); /* Ajustar para que no se superponga con el sidebar */
+    margin-top: 70px; /* Ajustar para que no se superponga con el navbar */
 }
-/* aqui lo blanco del medio */
+
 .container {
     max-width: 600px;
     margin: auto;
@@ -67,9 +120,8 @@ h1, h2 {
     border-radius: 4px;
 }
 
-
-/*aqui son los nombre de los botones */
-.btn { 
+/* Botones */
+.btn {
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -86,6 +138,7 @@ h1, h2 {
     background-color: #0056b3;
 }
 
+/* Alertas */
 .alert {
     margin-top: 40px;
     padding: 15px;
@@ -95,6 +148,7 @@ h1, h2 {
     border-radius: 4px;
 }
 
+/* Listas */
 .list-group {
     list-style-type: none;
     padding: 0;
@@ -119,7 +173,6 @@ h1, h2 {
     background-color: #c82333;
 }
 
-
 /* Estilo para el botón */
 .btn-primary {
     background-color: #007bff;
@@ -141,8 +194,7 @@ h1, h2 {
     border-collapse: collapse;
 }
 
-.table th,
-.table td {
+.table th, .table td {
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
@@ -161,19 +213,15 @@ h1, h2 {
     border: 1px solid #dee2e6;
 }
 
-.table-bordered th,
-.table-bordered td {
+.table-bordered th, .table-bordered td {
     border: 1px solid #dee2e6;
 }
 
-.table-bordered thead th,
-.table-bordered thead td {
+.table-bordered thead th, .table-bordered thead td {
     border-bottom-width: 2px;
 }
 
-
-/* resources/css/app.css */
-
+/* Card styles */
 .card {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -181,70 +229,13 @@ h1, h2 {
     margin: 16px 0;
     text-align: center;
 }
+
 .card-title {
     font-size: 1.5rem;
     margin-bottom: 8px;
 }
+
 .card-text {
     font-size: 1rem;
     margin-bottom: 4px;
-}
-
-
-
-/* public/css/sidebar.css */
-.sidebar {
-    height: 100vh;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #333;
-    color: #fff;
-    padding-top: 20px;
-}
-
-.sidebar .user-info {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.sidebar a {
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #fff;
-    display: block;
-}
-
-.sidebar a:hover {
-    background-color: #575757;
-    color: #fff;
-}
-
-.content {
-    margin-left: 260px;
-    padding: 15px;
-}
-
-.contenedor {
-    max-width: 100%;
-    margin: auto;
-    background: #fff;
-    padding: 70px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 }

@@ -36,6 +36,13 @@ h6 {
     color: #ffffff;
 }
 
+.custom-h6 {
+    font-size: 2rem; /* Ajusta el tamaño según lo necesario */
+    font-family: 'Homer Simpson UI'; /* Mantener la fuente consistente */
+    color: #ffffff; /* Mantener el color consistente */
+}
+
+
 p {
     color: #FFFFFF;
     margin-bottom: 15px; /* Añade espacio inferior a párrafos */
