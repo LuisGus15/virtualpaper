@@ -2,17 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h1>Pagar Venta ID: {{ $venta->id }}</h1>
+    <h1>Pagar Venta</h1>
+    <p><strong>ID Venta:</strong> {{ $venta->id }}</p>
     <p><strong>Fecha de Venta:</strong> {{ $venta->fecha_venta }}</p>
     <p><strong>Total:</strong> {{ $venta->total }}</p>
     <p><strong>Estado:</strong> {{ $venta->estado }}</p>
-
-    @if(isset($qrImage))
-        <div id="qr-code">
-            <img src="{{ $qrImage }}" alt="Código QR">
-        </div>
-    @else
-        <p>No se pudo generar el código QR. Intente nuevamente más tarde.</p>
-    @endif
+    <h2>Escanea el Código QR para Pagar</h2>
+    <div>
+        <img src="{{ $laQrImage }}" alt="Código QR para Pago">
+    </div>
 </div>
 @endsection

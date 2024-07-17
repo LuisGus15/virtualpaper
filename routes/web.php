@@ -11,6 +11,7 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\PagoFacilController;
 use Illuminate\Support\Facades\DB;
 
 
@@ -93,7 +94,10 @@ Route::get('/cliente/ventas', [VentaController::class, 'indexCliente'])->name('c
 Route::get('/cliente/ventas/create', [VentaController::class, 'createCliente'])->name('cliente.ventas.create');
 Route::post('/cliente/ventas', [VentaController::class, 'storeCliente'])->name('cliente.ventas.store');
 Route::get('/cliente/ventas/{id}', [VentaController::class, 'showCliente'])->name('cliente.ventas.show');
-Route::get('/cliente/ventas/{id}/pagar', [VentaController::class, 'pagar'])->name('cliente.ventas.pagar'); // Esta es la ruta para el método pagar
+
+//pago facil
+Route::get('/cliente/ventas/{venta}/pagar', [PagoFacilController::class, 'pagar'])->name('cliente.ventas.pagar');
+Route::post('/cliente/ventas/pagar/callback', [PagoFacilController::class, 'urlCallback'])->name('cliente.ventas.pagar.callback');
     
     Route::get('/catalogo', [ProductoController::class, 'showCustomerProducts'])->name('products.customer');
     Route::get('/customer', [ProductoController::class, 'customer'])->name('productos.customer');

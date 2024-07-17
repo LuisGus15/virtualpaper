@@ -191,40 +191,62 @@ class VentaController extends Controller
         $lcCorreo = 'cliente@example.com';
         $lcUrlCallBack = route('cliente.ventas.pagar.callback');
         $lcUrlReturn = route('cliente.ventas.index');
-        $laPedidoDetalle = []; // detalles de la venta
+    
+        // Detalles del pedido
+        $taPedidoDetalle = [
+            [
+                'Serial' => '123456',
+                'Producto' => 'Producto de Ejemplo',
+                'Cantidad' => 1,
+                'Precio' => $venta->total,
+                'Descuento' => 0,
+                'Total' => $venta->total,
+            ]
+        ];
     
         $client = new \GuzzleHttp\Client();
     
-        $response = $client->post('https://serviciostigomoney.pagofacil.com.bo/api/servicio/generarqrv2', [
-            'headers' => [
-                'Accept' => 'application/json',
-            ],
-            'json' => [
-                "tcCommerceID" => $lcComerceID,
-                "tnMoneda" => $lnMoneda,
-                "tnTelefono" => $lnTelefono,
-                'tcNombreUsuario' => $lcNombreUsuario,
-                'tnCiNit' => $lnCiNit,
-                'tcNroPago' => $lcNroPago,
-                "tnMontoClienteEmpresa" => $lnMontoClienteEmpresa,
-                "tcCorreo" => $lcCorreo,
-                'tcUrlCallBack' => $lcUrlCallBack,
-                "tcUrlReturn" => $lcUrlReturn,
-                'taPedidoDetalle' => $laPedidoDetalle,
-            ],
-        ]);
+        $requestData = [
+            "tcCommerceID" => $lcComerceID,
+            "tnMoneda" => $lnMoneda,
+            "tnTelefono" => $lnTelefono,
+            'tcNombreUsuario' => $lcNombreUsuario,
+            'tnCiNit' => $lnCiNit,
+            'tcNroPago' => $lcNroPago,
+            "tnMontoClienteEmpresa" => $lnMontoClienteEmpresa,
+            "tcCorreo" => $lcCorreo,
+            'tcUrlCallBack' => $lcUrlCallBack,
+            "tcUrlReturn" => $lcUrlReturn,
+            'taPedidoDetalle' => $taPedidoDetalle,
+        ];
     
-        $result = json_decode($response->getBody()->getContents());
+        try {
+            $response = $client->post('https://serviciostigomoney.pagofacil.com.bo/api/servicio/generarqrv2', [
+                'headers' => [
+                    'Accept' => 'application/json',
+                ],
+                'json' => $requestData,
+            ]);
     
-        if ($result->success) {
-            $qrImage = "data:image/png;base64," . json_decode(explode(";", $result->values)[1])->qrImage;
-            return view('cliente.ventas.pagar', compact('venta', 'qrImage'));
-        } else {
-            return redirect()->route('cliente.ventas.index')->with('error', 'No se pudo generar el QR.');
+            $result = json_decode($response->getBody()->getContents());
+    
+            if (isset($result->success) && $result->success) {
+                $qrImage = "data:image/png;base64," . json_decode(explode(";", $result->values)[1])->qrImage;
+                return view('cliente.ventas.pagar', compact('venta', 'qrImage'));
+            } else {
+                // Depuración para verificar la respuesta de la API
+                dd($result);
+                return redirect()->route('cliente.ventas.index')->with('error', 'No se pudo generar el QR.');
+            }
+        } catch (\Exception $e) {
+            // Manejo de excepción para depurar cualquier error
+            dd($e->getMessage());
+            return redirect()->route('cliente.ventas.index')->with('error', 'Ocurrió un error al intentar generar el QR.');
         }
     }
     
     
-
-
-}
+    
+    }
+    
+    
